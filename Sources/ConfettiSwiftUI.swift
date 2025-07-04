@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 public enum ConfettiType:CaseIterable, Hashable {
     
@@ -87,6 +88,7 @@ public struct ConfettiCannon<T: Equatable>: View {
          radius:CGFloat = 300,
          repetitions:Int = 1,
          repetitionInterval:Double = 1.0,
+         rainAnimationDuration: Double? = 1,
          hapticFeedback:Bool = true
     ) {
         self._trigger = trigger
@@ -118,7 +120,8 @@ public struct ConfettiCannon<T: Equatable>: View {
             radius: radius,
             repetitions: repetitions,
             repetitionInterval: repetitionInterval,
-            hapticFeedback: hapticFeedback
+            hapticFeedback: hapticFeedback,
+            rainAnimationDuration: rainAnimationDuration
         ))
     }
 
@@ -139,7 +142,7 @@ public struct ConfettiCannon<T: Equatable>: View {
                 for i in 0..<confettiConfig.repetitions{
                     DispatchQueue.main.asyncAfter(deadline: .now() + confettiConfig.repetitionInterval * Double(i)) {
                         animate.append(false)
-#if canImport(UIKit) && !os(tvOS) && !os(visionOS)
+#if os(iOS)
                         if confettiConfig.hapticFeedback {
                             let impactFeedback = UIImpactFeedbackGenerator(style: .heavy)
                             impactFeedback.impactOccurred()
