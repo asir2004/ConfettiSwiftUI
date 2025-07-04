@@ -58,7 +58,8 @@ public extension View {
         radius: CGFloat = 300,
         repetitions: Int = 1,
         repetitionInterval: Double = 1.0,
-				hapticFeedback: Bool = true
+        rainAnimationDuration: Double?,
+        hapticFeedback: Bool = true
     ) -> some View where T: Equatable {
         ZStack {
             self.layoutPriority(1)
@@ -76,6 +77,7 @@ public extension View {
                 radius: radius,
                 repetitions: repetitions,
                 repetitionInterval: repetitionInterval,
+                rainAnimationDuration: rainAnimationDuration,
                 hapticFeedback: hapticFeedback
             )
         }
