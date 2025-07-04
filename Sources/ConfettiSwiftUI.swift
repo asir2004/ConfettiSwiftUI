@@ -286,7 +286,7 @@ struct ConfettiAnimationView: View {
 }
 
 class ConfettiConfig: ObservableObject {
-    internal init(num: Int, shapes: [AnyView], colors: [Color], confettiSize: CGFloat, rainHeight: CGFloat, fadesOut: Bool, opacity: Double, openingAngle:Angle, closingAngle:Angle, radius:CGFloat, repetitions:Int, repetitionInterval:Double, hapticFeedback:Bool) {
+    internal init(num: Int, shapes: [AnyView], colors: [Color], confettiSize: CGFloat, rainHeight: CGFloat, fadesOut: Bool, opacity: Double, openingAngle:Angle, closingAngle:Angle, radius:CGFloat, repetitions:Int, repetitionInterval:Double, hapticFeedback:Bool, rainAnimationDuration: Double?) {
         self.num = num
         self.shapes = shapes
         self.colors = colors
@@ -300,7 +300,7 @@ class ConfettiConfig: ObservableObject {
         self.repetitions = repetitions
         self.repetitionInterval = repetitionInterval
         self.explosionAnimationDuration = Double(radius / 1300)
-        self.rainAnimationDuration = Double((rainHeight + radius) / 200)
+        self.rainAnimationDuration = rainAnimationDuration ?? Double((rainHeight + radius) / 200)
         self.hapticFeedback = hapticFeedback
     }
     
